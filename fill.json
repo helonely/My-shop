@@ -1,0 +1,18 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "TV",
+      "description": "LG2000"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "TV",
+      "description": "Samsung"
+    }
+  }
+]
