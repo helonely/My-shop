@@ -1,0 +1,36 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "name": "phones",
+      "description": "Apple"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Iphone 15 Pro Max",
+      "description": "\"Titanium\" 512 gb",
+      "image": "catalog/images/iphone_15_Pro_Max.jpeg",
+      "category": 7,
+      "price": "100000.00",
+      "create_at": "2024-07-16T09:47:49.218Z",
+      "update_at": "2024-07-16T09:47:49.218Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Iphone 14",
+      "description": "256 gb",
+      "image": "",
+      "category": null,
+      "price": "80000.00",
+      "create_at": "2024-07-16T09:55:26.239Z",
+      "update_at": "2024-07-16T09:55:26.239Z"
+    }
+  }
+]
