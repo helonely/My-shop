@@ -50,6 +50,11 @@ class Product(models.Model):
         verbose_name="Цена",
         help_text="Введите стоимость продукта",
     )
+    views_counter= models.PositiveIntegerField(
+        verbose_name="Количество просмотров",
+        default=0,
+        help_text="Укажите количество просмотров"
+    )
 
     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
@@ -57,14 +62,10 @@ class Product(models.Model):
 
     def __str__(self):
         return (
-            f""
             f"{self.name} "
-            f"{self.description} "
-            f"{self.image} "
-            f"{self.category} "
-            f"{self.price} "
-            f"{self.create_at} "
-            f"{self.update_at}"
+            f"{self.description[:30]}..."  # Выводим только начало описания
+            f"Категория: {self.category} "
+            f"Цена: {self.price} руб."
         )
 
     class Meta:
