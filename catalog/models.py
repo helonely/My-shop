@@ -50,7 +50,7 @@ class Product(models.Model):
         verbose_name="Цена",
         help_text="Введите стоимость продукта",
     )
-    views_counter= models.PositiveIntegerField(
+    views_counter = models.PositiveIntegerField(
         verbose_name="Количество просмотров",
         default=0,
         help_text="Укажите количество просмотров"
