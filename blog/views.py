@@ -22,10 +22,16 @@ class BlogListView(ListView):
     model = Blog
     template_name = 'blog/blog_list.html'
 
+    def get_queryset(self):
+        return Blog.objects.filter(is_active=True)
+
 
 class BlogDetailView(DetailView):
     model = Blog
     template_name = 'blog/blog_detail.html'
+
+    def get_queryset(self):
+        return Blog.objects.filter(is_active=True)
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
