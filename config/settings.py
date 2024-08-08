@@ -19,6 +19,9 @@ INSTALLED_APPS = [
 
     'catalog',
     'blog',
+
+    'django_extensions',
+    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
