@@ -3,10 +3,11 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(
-        max_length=100, verbose_name="Название", help_text="Введите название категории"
+        max_length=100,
+        verbose_name="Название категории",
     )
     description = models.TextField(
-        verbose_name="Описание", help_text="Введите описание категории"
+        verbose_name="Описание категории",
     )
 
     def __str__(self):
@@ -20,16 +21,16 @@ class Category(models.Model):
 class Product(models.Model):
 
     name = models.CharField(
-        max_length=100, verbose_name="Название", help_text="Название продукта"
+        max_length=100,
+        verbose_name="Название",
     )
 
     description = models.TextField(
-        verbose_name="Описание", help_text="Описание продукта"
+        verbose_name="Описание",
     )
 
     image = models.ImageField(
         verbose_name="Изображение",
-        help_text="Загрузите изображение продукта",
         upload_to="catalog/images",
         null=True,
         blank=True,
@@ -38,7 +39,6 @@ class Product(models.Model):
         Category,
         on_delete=models.SET_NULL,
         verbose_name="Категория",
-        help_text="Категория продукта",
         related_name="products",
         null=True,
         blank=True,
@@ -48,13 +48,12 @@ class Product(models.Model):
         max_digits=10,
         decimal_places=2,
         verbose_name="Цена",
-        help_text="Введите стоимость продукта",
     )
     views_counter = models.PositiveIntegerField(
         verbose_name="Количество просмотров",
         default=0,
-        help_text="Укажите количество просмотров"
     )
+    is_active = models.BooleanField(default=True, verbose_name="Активен")
 
     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
@@ -72,3 +71,25 @@ class Product(models.Model):
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["create_at", "name", "price"]
+
+
+class Version(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="versions",
+        null=True,
+        blank=True,
+        verbose_name="Версия продукта",
+    )
+    version_number = models.CharField(max_length=20, verbose_name="Номер версии")
+    version_name = models.CharField(max_length=100, verbose_name="Название версии")
+    is_active = models.BooleanField(default=False, verbose_name="Активна")
+
+    def __str__(self):
+        return f"{self.version_number} {self.version_name}"
+
+    class Meta:
+        verbose_name = "Версия"
+        verbose_name_plural = "Версии"
+        ordering = ["version_number"]
