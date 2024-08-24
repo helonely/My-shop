@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -38,7 +39,7 @@ class ProductDetailView(DetailView):
         return self.object
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(CreateView, LoginRequiredMixin):
     model = Product
     template_name = 'products/product_form.html'
     form_class = ProductForm
@@ -47,6 +48,13 @@ class ProductCreateView(CreateView):
     def get_form_class(self):
         form_class = super().get_form_class()
         return type(form_class.__name__, (form_class, StyleFormMixin), {})
+
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):
