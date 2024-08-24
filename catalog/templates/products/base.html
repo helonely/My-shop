@@ -172,9 +172,11 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">MyStore</h1>
         <p class="lead text-body-secondary">Мой магазин техники</p>
+        {% if user.is_authenticated %}
         <p>
           <a class="btn btn-success" href="{% url 'catalog:product_create' %}" role="button">Разместите ваш продукт</a>
         </p>
+        {% endif %}
       </div>
     </div>
   </section>
