@@ -17,7 +17,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:  # Класс формы для модели Product.
         model = Product  # Модель для которой формируется форма.
-        exclude = ('views_counter',)
+        exclude = ('views_counter', 'owner')
 
     def clean_name(self):
         cleaned_data = self.cleaned_data.get('name')
