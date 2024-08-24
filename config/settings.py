@@ -22,6 +22,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     "django_apscheduler",
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -97,3 +98,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = '/'  # Переадресация на главную страницу при авторизации
+LOGOUT_REDIRECT_URL = '/'  # Переадресация на главную страницу при выходе из системы
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "i.r4w@yandex.ru"
+EMAIL_HOST_PASSWORD = "bgescdghhitcyoex"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER  # Наименование сервера
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Адрес отправителя
