@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Category(models.Model):
     name = models.CharField(
@@ -58,6 +60,13 @@ class Product(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     update_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+    owner = models.ForeignKey(User,
+                              on_delete=models.CASCADE,
+                              verbose_name="Пользователь",
+                              default=None,  # По умолчанию
+                              related_name="products",
+                              null=True,
+    )
 
     def __str__(self):
         return (
