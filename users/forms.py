@@ -23,3 +23,9 @@ class PasswordResetForm(StyleFormMixin, forms.Form):
                 'class': 'form-control text-center',
             }
         ))
+
+
+class ProfileEditForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'avatar', 'phone', 'country')

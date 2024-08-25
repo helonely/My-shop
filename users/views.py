@@ -1,12 +1,13 @@
 import secrets
-
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, FormView
 
-from users.forms import UserRegisterForm, PasswordResetForm
+from users.forms import UserRegisterForm, PasswordResetForm, ProfileEditForm
 from users.models import User
 
 from config.settings import EMAIL_HOST_USER
@@ -62,3 +63,21 @@ class PasswordResetView(FormView):
                       from_email=EMAIL_HOST_USER, recipient_list=[user.email],)
             return super().form_valid(form)
 
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Профиль успешно обновлен!')
+            return redirect('users/profile_detail.html')
+    else:
+        form = ProfileEditForm(instance=request.user)
+    return render(request, 'users/profile_edit.html', {'form': form})
+
+
+@login_required
+def profile_detail(request):
+    user = request.user
+    return render(request, 'users/profile_detail.html', {'user': user})

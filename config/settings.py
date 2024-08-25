@@ -103,6 +103,7 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_REDIRECT_URL = '/'  # Переадресация на главную страницу при авторизации
 LOGOUT_REDIRECT_URL = '/'  # Переадресация на главную страницу при выходе из системы
+LOGIN_URL = '/users/login'  # Переадресация на страницу авторизации
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
