@@ -7,7 +7,19 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, StyleFormMixin, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.services import get_categories_from_cache, get_products_from_cache
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'products/category_list.html'
+    extra_context = {
+        'title': "Категории"
+    }
+
+    def get_queryset(self):
+        return get_categories_from_cache()
 
 
 class ProductListView(LoginRequiredMixin, ListView):
@@ -26,6 +38,9 @@ class ProductListView(LoginRequiredMixin, ListView):
         context['products_with_versions'] = products_with_versions
 
         return context
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
