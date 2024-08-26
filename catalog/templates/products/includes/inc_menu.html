@@ -4,6 +4,9 @@
             <div class="col-sm-8 col-md-7 py-4">
                 <h4>My store menu</h4>
                 <p class="text-body-secondary">Здесь должно быть описание или нет.</p>
+                {% if user.is_authenticated %}
+                    <h5 class="text-muted mb-3">Добро пожаловать! {{user.first_name}} {{user.last_name}}</h5>
+                {% endif %}
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
                 <h4>Навигация</h4>
