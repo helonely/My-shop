@@ -1,0 +1,36 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mb-4 box-shadow">
+                {% if object_list %}
+                    <table class="table table-striped">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">№</th>
+                                <th scope="col">Наименование</th>
+                                <th scope="col">Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list %}
+                            <tr>
+                                <td scope="row" class="text-center">{{ object.pk }}</td>
+                                <td>{{ object.name }}</td>
+                                <td>{{ object.description }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="text-center p-4">
+                        <p>Нет доступных объектов для отображения.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
