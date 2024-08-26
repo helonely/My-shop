@@ -14,6 +14,7 @@
                     <li><a href="{% url 'catalog:list_products' %}" class="text-white">Главная</a></li>
                     <li><a href="{% url 'blog:blog_list' %}" class="text-white">Блог</a></li>
                     <li><a href="{% url 'catalog:contacts' %}" class="text-white">Контакты</a></li>
+                    <li><a href="{% url 'catalog:category_list' %}" class="text-white">Категории</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'users:logout' %}" class="text-white">Выход</a></li>
                     <li><a href="{% url 'users:profile_detail' %}" class="text-white">Профиль</a></li>
