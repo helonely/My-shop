@@ -44,3 +44,9 @@ class VersionForm(StyleFormMixin, ModelForm):
         widgets = {
             'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'is_active')
